@@ -14,6 +14,8 @@
 		552E52B6229234F900CB0658 /* QuickFlightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552E52B5229234F900CB0658 /* QuickFlightTests.swift */; };
 		552E52C1229234F900CB0658 /* QuickFlightUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552E52C0229234F900CB0658 /* QuickFlightUITests.swift */; };
 		5563C0D422924E7B0085D08E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5563C0D322924E7B0085D08E /* HomeViewController.swift */; };
+		CF0A698422924E8F00E66557 /* FlightSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0A698322924E8F00E66557 /* FlightSearchViewController.swift */; };
+		CF0A69862292567F00E66557 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0A69852292567F00E66557 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		552E52C0229234F900CB0658 /* QuickFlightUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickFlightUITests.swift; sourceTree = "<group>"; };
 		552E52C2229234F900CB0658 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5563C0D322924E7B0085D08E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		CF0A698322924E8F00E66557 /* FlightSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightSearchViewController.swift; sourceTree = "<group>"; };
+		CF0A69852292567F00E66557 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 				552E52A9229234F900CB0658 /* LaunchScreen.storyboard */,
 				552E52AC229234F900CB0658 /* Info.plist */,
 				5563C0D322924E7B0085D08E /* HomeViewController.swift */,
+				CF0A698322924E8F00E66557 /* FlightSearchViewController.swift */,
+				CF0A69852292567F00E66557 /* SettingsViewController.swift */,
 			);
 			path = QuickFlight;
 			sourceTree = "<group>";
@@ -258,6 +264,10 @@
 			files = (
 				552E52A1229234F700CB0658 /* AppDelegate.swift in Sources */,
 				5563C0D422924E7B0085D08E /* HomeViewController.swift in Sources */,
+				552E52A3229234F700CB0658 /* ViewController.swift in Sources */,
+				CF0A698422924E8F00E66557 /* FlightSearchViewController.swift in Sources */,
+				552E52A1229234F700CB0658 /* AppDelegate.swift in Sources */,
+				CF0A69862292567F00E66557 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
