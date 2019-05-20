@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		552E52A1229234F700CB0658 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552E52A0229234F700CB0658 /* AppDelegate.swift */; };
-		552E52A3229234F700CB0658 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552E52A2229234F700CB0658 /* ViewController.swift */; };
 		552E52A6229234F700CB0658 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 552E52A4229234F700CB0658 /* Main.storyboard */; };
 		552E52A8229234F900CB0658 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 552E52A7229234F900CB0658 /* Assets.xcassets */; };
 		552E52AB229234F900CB0658 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 552E52A9229234F900CB0658 /* LaunchScreen.storyboard */; };
 		552E52B6229234F900CB0658 /* QuickFlightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552E52B5229234F900CB0658 /* QuickFlightTests.swift */; };
 		552E52C1229234F900CB0658 /* QuickFlightUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552E52C0229234F900CB0658 /* QuickFlightUITests.swift */; };
+		5563C0D422924E7B0085D08E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5563C0D322924E7B0085D08E /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +36,6 @@
 /* Begin PBXFileReference section */
 		552E529D229234F700CB0658 /* QuickFlight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickFlight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		552E52A0229234F700CB0658 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		552E52A2229234F700CB0658 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		552E52A5229234F700CB0658 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		552E52A7229234F900CB0658 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		552E52AA229234F900CB0658 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +46,7 @@
 		552E52BC229234F900CB0658 /* QuickFlightUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickFlightUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		552E52C0229234F900CB0658 /* QuickFlightUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickFlightUITests.swift; sourceTree = "<group>"; };
 		552E52C2229234F900CB0658 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5563C0D322924E7B0085D08E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,11 +98,11 @@
 			isa = PBXGroup;
 			children = (
 				552E52A0229234F700CB0658 /* AppDelegate.swift */,
-				552E52A2229234F700CB0658 /* ViewController.swift */,
 				552E52A4229234F700CB0658 /* Main.storyboard */,
 				552E52A7229234F900CB0658 /* Assets.xcassets */,
 				552E52A9229234F900CB0658 /* LaunchScreen.storyboard */,
 				552E52AC229234F900CB0658 /* Info.plist */,
+				5563C0D322924E7B0085D08E /* HomeViewController.swift */,
 			);
 			path = QuickFlight;
 			sourceTree = "<group>";
@@ -256,8 +256,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				552E52A3229234F700CB0658 /* ViewController.swift in Sources */,
 				552E52A1229234F700CB0658 /* AppDelegate.swift in Sources */,
+				5563C0D422924E7B0085D08E /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
