@@ -9,7 +9,7 @@
 import UIKit
 
 class FlightSearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
+
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var flightResultsTable: UITableView!
     
@@ -21,17 +21,17 @@ class FlightSearchViewController: UIViewController, UITableViewDataSource, UITab
         flightResultsTable.dataSource = self
         flightResultsTable.delegate = self
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "flightResultCell", for: indexPath)
-        
+
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 85
     }
