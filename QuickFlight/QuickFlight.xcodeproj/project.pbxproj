@@ -7,13 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		449F77C3229258F7009DE33E /* checkboxOutline.png in Resources */ = {isa = PBXBuildFile; fileRef = 449F77C1229258F7009DE33E /* checkboxOutline.png */; };
+		449F77C4229258F7009DE33E /* checkboxFilled.png in Resources */ = {isa = PBXBuildFile; fileRef = 449F77C2229258F7009DE33E /* checkboxFilled.png */; };
+		449F77C622925DA6009DE33E /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449F77C522925DA6009DE33E /* ItemCell.swift */; };
 		552E52A1229234F700CB0658 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552E52A0229234F700CB0658 /* AppDelegate.swift */; };
+		552E52A3229234F700CB0658 /* FlightDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552E52A2229234F700CB0658 /* FlightDetailsViewController.swift */; };
 		552E52A6229234F700CB0658 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 552E52A4229234F700CB0658 /* Main.storyboard */; };
 		552E52A8229234F900CB0658 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 552E52A7229234F900CB0658 /* Assets.xcassets */; };
 		552E52AB229234F900CB0658 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 552E52A9229234F900CB0658 /* LaunchScreen.storyboard */; };
 		552E52B6229234F900CB0658 /* QuickFlightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552E52B5229234F900CB0658 /* QuickFlightTests.swift */; };
 		552E52C1229234F900CB0658 /* QuickFlightUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552E52C0229234F900CB0658 /* QuickFlightUITests.swift */; };
 		5563C0D422924E7B0085D08E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5563C0D322924E7B0085D08E /* HomeViewController.swift */; };
+		CF0A698422924E8F00E66557 /* FlightSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0A698322924E8F00E66557 /* FlightSearchViewController.swift */; };
+		CF0A69862292567F00E66557 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0A69852292567F00E66557 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,8 +40,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		449F77C1229258F7009DE33E /* checkboxOutline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkboxOutline.png; sourceTree = "<group>"; };
+		449F77C2229258F7009DE33E /* checkboxFilled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkboxFilled.png; sourceTree = "<group>"; };
+		449F77C522925DA6009DE33E /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		552E529D229234F700CB0658 /* QuickFlight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickFlight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		552E52A0229234F700CB0658 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		552E52A2229234F700CB0658 /* FlightDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightDetailsViewController.swift; sourceTree = "<group>"; };
 		552E52A5229234F700CB0658 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		552E52A7229234F900CB0658 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		552E52AA229234F900CB0658 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +57,8 @@
 		552E52C0229234F900CB0658 /* QuickFlightUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickFlightUITests.swift; sourceTree = "<group>"; };
 		552E52C2229234F900CB0658 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5563C0D322924E7B0085D08E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		CF0A698322924E8F00E66557 /* FlightSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightSearchViewController.swift; sourceTree = "<group>"; };
+		CF0A69852292567F00E66557 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +86,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		449F77C0229256B9009DE33E /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				449F77C2229258F7009DE33E /* checkboxFilled.png */,
+				449F77C1229258F7009DE33E /* checkboxOutline.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		552E5294229234F700CB0658 = {
 			isa = PBXGroup;
 			children = (
@@ -97,12 +118,17 @@
 		552E529F229234F700CB0658 /* QuickFlight */ = {
 			isa = PBXGroup;
 			children = (
+				449F77C0229256B9009DE33E /* Images */,
 				552E52A0229234F700CB0658 /* AppDelegate.swift */,
+				552E52A2229234F700CB0658 /* FlightDetailsViewController.swift */,
 				552E52A4229234F700CB0658 /* Main.storyboard */,
 				552E52A7229234F900CB0658 /* Assets.xcassets */,
 				552E52A9229234F900CB0658 /* LaunchScreen.storyboard */,
 				552E52AC229234F900CB0658 /* Info.plist */,
+				449F77C522925DA6009DE33E /* ItemCell.swift */,
 				5563C0D322924E7B0085D08E /* HomeViewController.swift */,
+				CF0A698322924E8F00E66557 /* FlightSearchViewController.swift */,
+				CF0A69852292567F00E66557 /* SettingsViewController.swift */,
 			);
 			path = QuickFlight;
 			sourceTree = "<group>";
@@ -230,6 +256,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				552E52AB229234F900CB0658 /* LaunchScreen.storyboard in Resources */,
+				449F77C4229258F7009DE33E /* checkboxFilled.png in Resources */,
+				449F77C3229258F7009DE33E /* checkboxOutline.png in Resources */,
 				552E52A8229234F900CB0658 /* Assets.xcassets in Resources */,
 				552E52A6229234F700CB0658 /* Main.storyboard in Resources */,
 			);
@@ -256,8 +284,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				552E52A3229234F700CB0658 /* FlightDetailsViewController.swift in Sources */,
 				552E52A1229234F700CB0658 /* AppDelegate.swift in Sources */,
 				5563C0D422924E7B0085D08E /* HomeViewController.swift in Sources */,
+				552E52A3229234F700CB0658 /* ViewController.swift in Sources */,
+				CF0A698422924E8F00E66557 /* FlightSearchViewController.swift in Sources */,
+				449F77C622925DA6009DE33E /* ItemCell.swift in Sources */,
+				CF0A69862292567F00E66557 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
