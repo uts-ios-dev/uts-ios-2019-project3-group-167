@@ -8,35 +8,37 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
-
-    @IBAction func timeSlider(_ sender: UISlider) {
-    }
-    @IBOutlet weak var optionPicker: UIPickerView!
+class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    @IBOutlet weak var optionTextField: UITextField!
     
     //create options
     var list = ["hour(s)", "day(s)"]
+    var picker = UIPickerView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        picker.delegate = self
+        picker.dataSource = self
+        optionTextField.inputView = picker
     }
     
-    func numberofComponentsInPickerView(pickerView :UIPickerView) -> Int {
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int{
         return 1
     }
     
-    func pickerView(pickerView :UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
         return list.count
     }
     
-    func pickerView(pickerView :UIPickerView, titleForRow row: Int, forComponent component: Int) -> String!{
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        optionTextField.text = list[row]
         self.view.endEditing(true)
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return list[row]
     }
     
-    /*func pickerView(pickerView :UIPickerView, didSelectRow row: Int, inComponent component: Int) -> String!{
-        self.textBox.text = self.list[row]
-        self
-    }*/
 
 }
