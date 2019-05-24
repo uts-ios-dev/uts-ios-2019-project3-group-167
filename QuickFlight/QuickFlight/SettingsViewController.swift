@@ -16,4 +16,7 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate {
         infoLabel.text = String(Int(sender.value))
     }
 
+    @IBAction func saveSettings(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
 }

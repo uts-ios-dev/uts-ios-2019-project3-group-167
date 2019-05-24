@@ -47,7 +47,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationLevel="5" indentationWidth="10" reuseIdentifier="itineraryCell" rowHeight="85" id="NRA-q2-GPu">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationLevel="5" indentationWidth="10" reuseIdentifier="itineraryCell" rowHeight="85" id="NRA-q2-GPu">
                                         <rect key="frame" x="0.0" y="28" width="414" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NRA-q2-GPu" id="NRY-Qn-4Ah">
@@ -160,7 +160,7 @@
                     <navigationItem key="navigationItem" title="Settings" id="Pdc-kj-KSM">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="JEZ-it-YZA">
                             <connections>
-                                <segue destination="foc-u2-Y2c" kind="show" id="x49-hh-0H3"/>
+                                <action selector="saveSettings:" destination="Bvr-4N-3Eg" id="ReW-jW-P8B"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -393,7 +393,6 @@
         <image name="checkboxOutline" width="491.51998901367188" height="491.51998901367188"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wnn-rn-2EB"/>
         <segue reference="FfP-hF-MA6"/>
     </inferredMetricsTieBreakers>
 </document>
