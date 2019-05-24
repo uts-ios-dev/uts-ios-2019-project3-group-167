@@ -14,45 +14,57 @@ class FlightSearchViewController: UIViewController, UITableViewDataSource, UITab
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var flightResultsTable: UITableView!
     
+    var flightResults: [Flight] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         flightResultsTable.dataSource = self
         flightResultsTable.delegate = self
         
         // Test request to mock API
-        let flightsEndpoint: String = "http://demo7895779.mockable.io/quickflights/flights"
-        Alamofire.request(flightsEndpoint)
-            .responseJSON { response in
-                print(response)
-        }
+        fetchFlights()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return flightResults.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "flightResultCell", for: indexPath)
-
+        let flight = flightResults[indexPath.row]
+        
+        let destinationAndOriginLabel: UILabel = cell.viewWithTag(1) as! UILabel
+        let flightNumberLabel: UILabel = cell.viewWithTag(2) as! UILabel
+        let fromDateLabel: UILabel = cell.viewWithTag(3) as! UILabel
+        let timeLabel: UILabel = cell.viewWithTag(4) as! UILabel
+        
+        destinationAndOriginLabel.text = "\(flight.origin) to \(flight.destination)"
+        flightNumberLabel.text = flight.flightNumber
+        fromDateLabel.text = DateUtils.toDateString(flight.fromDate)
+        timeLabel.text = "\(DateUtils.toTimeString(flight.fromDate)) - \(DateUtils.toTimeString(flight.toDate))"
+        
         return cell
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 85
+        return 70
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func fetchFlights() {
+        let flightsEndpoint: String = "http://demo7895779.mockable.io/quickflights/flights"
+        
+        Alamofire.request(flightsEndpoint, method: .get, parameters: nil, encoding: JSONEncoding.default)
+            .responseJSON { response in
+                do {
+                    let jsonDecoder = JSONDecoder()
+                    let flightsResponse = try jsonDecoder.decode(Array<Flight>.self, from: response.data!)
+                    
+                    self.flightResults = flightsResponse
+                    self.flightResultsTable.reloadData()
+                } catch {
+                    print(error)
+                }
+        }
     }
-    */
-
 }

@@ -9,17 +9,37 @@
 import Foundation
 
 
-class Flight{
+class Flight: Codable {
+    
     var origin : String
     var destination : String
     var flightNumber : String
-    var date : Date
+    var fromDate: Date
+    var toDate: Date
     
-    init(origin : String, destination : String, flightNumber : String, date : Date) {
+    init(origin : String, destination : String, flightNumber : String, fromDate : Date, toDate: Date) {
         self.origin = origin
         self.destination = destination
         self.flightNumber = flightNumber
-        self.date = date
+        self.fromDate = fromDate
+        self.toDate = toDate
     }
     
+    enum CodingKeys: String, CodingKey {
+        case flightNumber = "flightNumber"
+        case origin = "origin"
+        case destination = "destination"
+        case fromDate = "fromDate"
+        case toDate = "toDate"
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        
+        flightNumber = try values.decodeIfPresent(String.self, forKey: .flightNumber)!
+        origin = try values.decodeIfPresent(String.self, forKey: .origin)!
+        destination = try values.decodeIfPresent(String.self, forKey: .destination)!
+        fromDate = DateUtils.toDate(try values.decodeIfPresent(String.self, forKey: .fromDate)!)!
+        toDate = DateUtils.toDate(try values.decodeIfPresent(String.self, forKey: .toDate)!)!
+    }
 }
