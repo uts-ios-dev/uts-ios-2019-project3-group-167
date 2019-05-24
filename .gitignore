@@ -11,3 +11,4 @@ xcuserdata/
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
 *.idea
+.DS_Store
