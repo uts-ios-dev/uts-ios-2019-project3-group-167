@@ -12,7 +12,7 @@ class Checklist{
     var name : String
     var done : Bool
     
-    self.init(name : String, done : Bool){
+    init(name : String, done : Bool){
         self.name = name
         self.done = done
     }
