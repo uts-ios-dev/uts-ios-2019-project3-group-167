@@ -1,0 +1,6 @@
+framework module Pods_QuickFlightUITests {
+  umbrella header "Pods-QuickFlightUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
