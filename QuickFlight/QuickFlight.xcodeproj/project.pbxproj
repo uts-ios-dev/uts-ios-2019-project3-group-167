@@ -22,6 +22,9 @@
 		5563C0D422924E7B0085D08E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5563C0D322924E7B0085D08E /* HomeViewController.swift */; };
 		CF0A698422924E8F00E66557 /* FlightSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0A698322924E8F00E66557 /* FlightSearchViewController.swift */; };
 		CF0A69862292567F00E66557 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0A69852292567F00E66557 /* SettingsViewController.swift */; };
+		CFF82660229798F6005EBA63 /* Flight.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF8265F229798F6005EBA63 /* Flight.swift */; };
+		CFF826622297993E005EBA63 /* Itinerary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF826612297993D005EBA63 /* Itinerary.swift */; };
+		CFF8266422979979005EBA63 /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF8266322979979005EBA63 /* Checklist.swift */; };
 		FBBF1E79F8F725A98CBBDC3D /* Pods_QuickFlightUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2E479E7ABAF4FF57005D3EB /* Pods_QuickFlightUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +71,9 @@
 		C077E0EC5A0E3AF9880FEE59 /* Pods_QuickFlight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickFlight.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF0A698322924E8F00E66557 /* FlightSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightSearchViewController.swift; sourceTree = "<group>"; };
 		CF0A69852292567F00E66557 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		CFF8265F229798F6005EBA63 /* Flight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flight.swift; sourceTree = "<group>"; };
+		CFF826612297993D005EBA63 /* Itinerary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Itinerary.swift; sourceTree = "<group>"; };
+		CFF8266322979979005EBA63 /* Checklist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checklist.swift; sourceTree = "<group>"; };
 		E13F1D35A1F62D7334754529 /* Pods-QuickFlightUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickFlightUITests.release.xcconfig"; path = "Target Support Files/Pods-QuickFlightUITests/Pods-QuickFlightUITests.release.xcconfig"; sourceTree = "<group>"; };
 		E2E479E7ABAF4FF57005D3EB /* Pods_QuickFlightUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickFlightUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F43BC0D2E26DD3A885B02A1E /* Pods-QuickFlight.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickFlight.release.xcconfig"; path = "Target Support Files/Pods-QuickFlight/Pods-QuickFlight.release.xcconfig"; sourceTree = "<group>"; };
@@ -135,6 +141,7 @@
 		552E529F229234F700CB0658 /* QuickFlight */ = {
 			isa = PBXGroup;
 			children = (
+				CFF8265E229798DB005EBA63 /* Model */,
 				449F77C0229256B9009DE33E /* Images */,
 				552E52A0229234F700CB0658 /* AppDelegate.swift */,
 				552E52A2229234F700CB0658 /* FlightDetailsViewController.swift */,
@@ -166,6 +173,16 @@
 				552E52C2229234F900CB0658 /* Info.plist */,
 			);
 			path = QuickFlightUITests;
+			sourceTree = "<group>";
+		};
+		CFF8265E229798DB005EBA63 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CFF8265F229798F6005EBA63 /* Flight.swift */,
+				CFF826612297993D005EBA63 /* Itinerary.swift */,
+				CFF8266322979979005EBA63 /* Checklist.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		E7AD1E18295CF092198CFA9E /* Frameworks */ = {
@@ -415,12 +432,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFF8266422979979005EBA63 /* Checklist.swift in Sources */,
 				552E52A3229234F700CB0658 /* FlightDetailsViewController.swift in Sources */,
 				552E52A1229234F700CB0658 /* AppDelegate.swift in Sources */,
 				5563C0D422924E7B0085D08E /* HomeViewController.swift in Sources */,
 				552E52A3229234F700CB0658 /* FlightDetailsViewController.swift in Sources */,
 				CF0A698422924E8F00E66557 /* FlightSearchViewController.swift in Sources */,
+				CFF82660229798F6005EBA63 /* Flight.swift in Sources */,
 				449F77C622925DA6009DE33E /* ItemCell.swift in Sources */,
+				CFF826622297993E005EBA63 /* Itinerary.swift in Sources */,
 				CF0A69862292567F00E66557 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
