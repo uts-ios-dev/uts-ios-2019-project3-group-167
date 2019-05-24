@@ -6,6 +6,7 @@
 //  Copyright © 2019 Jessica Wiradinata. All rights reserved.
 //
 
+import Alamofire
 import UIKit
 
 class FlightSearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -20,6 +21,13 @@ class FlightSearchViewController: UIViewController, UITableViewDataSource, UITab
         // Do any additional setup after loading the view.
         flightResultsTable.dataSource = self
         flightResultsTable.delegate = self
+        
+        // Test request to mock API
+        let flightsEndpoint: String = "http://demo7895779.mockable.io/quickflights/flights"
+        Alamofire.request(flightsEndpoint)
+            .responseJSON { response in
+                print(response)
+        }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
