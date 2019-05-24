@@ -8,37 +8,15 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class SettingsViewController: UIViewController, UIPickerViewDelegate {
     
     @IBOutlet weak var optionTextField: UITextField!
-    
-    //create options
-    var list = ["hour(s)", "day(s)"]
-    var picker = UIPickerView()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        picker.delegate = self
-        picker.dataSource = self
-        optionTextField.inputView = picker
+    @IBOutlet weak var infoLabel: UILabel!
+    @IBAction func slider(_ sender: UISlider) {
+        infoLabel.text = String(Int(sender.value))
     }
-    
-    public func numberOfComponents(in pickerView: UIPickerView) -> Int{
-        return 1
-    }
-    
-    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
-        return list.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        optionTextField.text = list[row]
-        self.view.endEditing(true)
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return list[row]
-    }
-    
 
+    @IBAction func saveSettings(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
