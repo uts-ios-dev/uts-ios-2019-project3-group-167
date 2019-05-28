@@ -10,13 +10,24 @@ import UIKit
 
 class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ChangeButton, CreateItem {
     
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var flightNumberLabel: UILabel!
+    @IBOutlet weak var originToDestinationLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var timeLabel: UILabel!
     
+    var flight: Flight?
     var items: [Item] = [Item(itemName: "Banana")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        if let flightDetails = flight {
+            dateLabel.text = DateUtils.toDateString(flightDetails.fromDate)
+            flightNumberLabel.text = flightDetails.flightNumber
+            originToDestinationLabel.text = "\(flightDetails.origin) to \(flightDetails.destination)"
+            timeLabel.text = "\(DateUtils.toTimeString(flightDetails.fromDate)) - \(DateUtils.toTimeString(flightDetails.toDate))"
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
