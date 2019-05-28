@@ -8,15 +8,21 @@
 
 import UIKit
 
-class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ChangeButton, CreateItem {
+class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ChangeButton {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var editBtn: UIButton!
     
     var items: [Item] = [Item(itemName: "Banana")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    @IBAction func editBtnTapped(_ sender: Any) {
+        items.append(Item(itemName: ""))
+        tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -34,14 +40,7 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
             cell.itemCheckbox.setBackgroundImage(UIImage(named: "checkboxOutline"), for: .normal)
         }
         
-        if (indexPath.row == 0) {
-            if (items[indexPath.row].itemName != "") {
-                items.append(Item(itemName: ""))
-            }
-        }
-        
         cell.changeButtonDelegate = self
-        cell.createItemDelegate = self
         cell.indexP = indexPath.row
         cell.items = items
         
@@ -50,11 +49,6 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     
     func changeButton(checked: Bool, index: Int) {
         items[index].checked = checked
-        tableView.reloadData()
-    }
-    
-    func createItem(itemName: String, index: Int) {
-        items[index].itemName = itemName
         tableView.reloadData()
     }
     

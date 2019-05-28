@@ -367,6 +367,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uVH-2U-9Y3">
+                                <rect key="frame" x="371" y="257" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                <state key="normal" title="Add"/>
+                                <connections>
+                                    <action selector="editBtnTapped:" destination="foc-u2-Y2c" eventType="touchUpInside" id="CMw-31-j9X"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="Mfe-O3-o5p"/>
@@ -379,6 +388,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="editBtn" destination="uVH-2U-9Y3" id="7UY-5Z-cpp"/>
                         <outlet property="tableView" destination="SH3-AS-e58" id="5Ps-rc-hhv"/>
                     </connections>
                 </viewController>
@@ -393,6 +403,6 @@
         <image name="checkboxOutline" width="491.51998901367188" height="491.51998901367188"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="FfP-hF-MA6"/>
+        <segue reference="Ku0-5z-to1"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -34,9 +34,12 @@ class ItemCell: UITableViewCell {
         }
     }
     
-    @IBAction func itemTextfieldAction(_ sender: Any) {
+    @IBAction func itemTextfieldAction(_ sender: UITextField) {
         print(itemTextfield.text!)
-        createItemDelegate?.createItem(itemName: itemTextfield.text!, index: indexP!)
+        // This section will save the data to a new array when database is connected.
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        itemTextfield.resignFirstResponder()
+    }
 }
