@@ -17,20 +17,20 @@ class Flight: Codable {
     var fromDate: Date
     var toDate: Date
     
-    init(origin : String, destination : String, flightNumber : String, fromDate : Date, toDate: Date) {
-        self.origin = origin
-        self.destination = destination
-        self.flightNumber = flightNumber
-        self.fromDate = fromDate
-        self.toDate = toDate
-    }
-    
     enum CodingKeys: String, CodingKey {
         case flightNumber = "flightNumber"
         case origin = "origin"
         case destination = "destination"
         case fromDate = "fromDate"
         case toDate = "toDate"
+    }
+    
+    init(origin : String, destination : String, flightNumber : String, fromDate : Date, toDate: Date) {
+        self.origin = origin
+        self.destination = destination
+        self.flightNumber = flightNumber
+        self.fromDate = fromDate
+        self.toDate = toDate
     }
     
     required init(from decoder: Decoder) throws {

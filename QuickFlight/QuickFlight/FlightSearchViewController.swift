@@ -22,8 +22,22 @@ class FlightSearchViewController: UIViewController, UITableViewDataSource, UITab
         flightResultsTable.dataSource = self
         flightResultsTable.delegate = self
         
-        // Test request to mock API
         fetchFlights()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        if segue.destination is FlightDetailsViewController {
+            guard let viewController = segue.destination as? FlightDetailsViewController,
+                let selectedFlightCell = sender as? UITableViewCell,
+                let indexPath = flightResultsTable.indexPath(for: selectedFlightCell) else {
+                    return
+            }
+            
+            let selectedFlight = flightResults[indexPath.row]
+            viewController.flight = selectedFlight
+        }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
