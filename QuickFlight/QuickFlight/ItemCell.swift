@@ -37,6 +37,7 @@ class ItemCell: UITableViewCell {
     @IBAction func itemTextfieldAction(_ sender: UITextField) {
         print(itemTextfield.text!)
         // This section will save the data to a new array when database is connected.
+        items![indexP!].itemName = itemTextfield.text!
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -47,16 +47,20 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         return cell
     }
     
-    func changeButton(checked: Bool, index: Int) {
-        items[index].checked = checked
-        tableView.reloadData()
-    }
-    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             self.items.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
+    
+    func changeButton(checked: Bool, index: Int) {
+        items[index].checked = checked
+        tableView.reloadData()
     }
 }
 
