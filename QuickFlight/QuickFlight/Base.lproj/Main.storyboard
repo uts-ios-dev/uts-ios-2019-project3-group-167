@@ -248,6 +248,7 @@
                     <navigationItem key="navigationItem" title="Flight Search" id="DAd-v5-6DW"/>
                     <connections>
                         <outlet property="flightResultsTable" destination="vf2-iI-E5H" id="CO3-J4-mqF"/>
+                        <outlet property="searchBar" destination="bhI-Uf-Hb4" id="zd1-K9-xA7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2kW-Ll-MeB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -405,12 +406,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Airplane" width="672" height="321.83999633789062"/>
+        <image name="Airplane" width="2800" height="1341"/>
         <image name="Background" width="750" height="1334"/>
-        <image name="checkboxOutline" width="491.51998901367188" height="491.51998901367188"/>
+        <image name="checkboxOutline" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wnn-rn-2EB"/>
-        <segue reference="FfP-hF-MA6"/>
+        <segue reference="q0N-ND-g40"/>
+        <segue reference="Ku0-5z-to1"/>
     </inferredMetricsTieBreakers>
 </document>
