@@ -18,6 +18,8 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var editBtn: UIButton!
     
     var flight: Flight?
+    var itinerary: Itinerary?
+    var itineraries: [Itinerary]?
     var checklists: [Checklist] = [Checklist(name: "Apple", done: false)]
     
     override func viewDidLoad() {
@@ -28,6 +30,14 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
             flightNumberLabel.text = flightDetails.flightNumber
             originToDestinationLabel.text = "\(flightDetails.origin) to \(flightDetails.destination)"
             timeLabel.text = "\(DateUtils.toTimeString(flightDetails.fromDate)) - \(DateUtils.toTimeString(flightDetails.toDate))"
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if self.isMovingFromParent {
+            
         }
     }
     

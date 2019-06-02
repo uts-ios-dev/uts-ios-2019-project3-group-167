@@ -15,9 +15,10 @@ class FlightSearchViewController: UIViewController, UITableViewDataSource, UITab
     @IBOutlet weak var flightResultsTable: UITableView!
     
     var flightResults: [Flight] = []
+    var itineraries: [Itinerary]?
     var searchFlightResults: [Flight] = []
     var isFlightSearching: Bool = false
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,7 +26,7 @@ class FlightSearchViewController: UIViewController, UITableViewDataSource, UITab
         flightResultsTable.delegate = self
         searchBar.delegate = self
         searchBar.returnKeyType = UIReturnKeyType.done
-        
+
         fetchFlights()
     }
     
@@ -48,13 +49,13 @@ class FlightSearchViewController: UIViewController, UITableViewDataSource, UITab
         if isFlightSearching {
             return searchFlightResults.count
         }
-        
+
         return flightResults.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "flightResultCell", for: indexPath)
-        
+
         var flight = flightResults[indexPath.row]
         if isFlightSearching {
             flight = searchFlightResults[indexPath.row]
@@ -83,12 +84,12 @@ class FlightSearchViewController: UIViewController, UITableViewDataSource, UITab
             flightResultsTable.reloadData()
             return
         }
-        
+
         isFlightSearching = true
         searchFlightResults = flightResults.filter({$0.flightNumber.contains(textToSearch)})
         flightResultsTable.reloadData()
     }
-    
+
     func fetchFlights() {
         let flightsEndpoint: String = "http://demo7895779.mockable.io/quickflights/flights"
         
