@@ -144,7 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				5548B4092298186D0033558F /* Utils */,
-				CFF8265E229798DB005EBA63 /* Model */,
+				CFF8265E229798DB005EBA63 /* Models */,
 				449F77C0229256B9009DE33E /* Images */,
 				552E52A0229234F700CB0658 /* AppDelegate.swift */,
 				552E52A2229234F700CB0658 /* FlightDetailsViewController.swift */,
@@ -186,14 +186,14 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		CFF8265E229798DB005EBA63 /* Model */ = {
+		CFF8265E229798DB005EBA63 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				CFF8265F229798F6005EBA63 /* Flight.swift */,
 				CFF826612297993D005EBA63 /* Itinerary.swift */,
 				CFF8266322979979005EBA63 /* Checklist.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		E7AD1E18295CF092198CFA9E /* Frameworks */ = {

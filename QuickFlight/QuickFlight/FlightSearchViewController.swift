@@ -15,6 +15,7 @@ class FlightSearchViewController: UIViewController, UITableViewDataSource, UITab
     @IBOutlet weak var flightResultsTable: UITableView!
     
     var flightResults: [Flight] = []
+    var itineraries: [Itinerary]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
