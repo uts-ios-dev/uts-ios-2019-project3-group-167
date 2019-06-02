@@ -392,9 +392,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="dateLabel" destination="58C-oe-uuL" id="03f-6l-W0j"/>
+                        <outlet property="editBtn" destination="uVH-2U-9Y3" id="7UY-5Z-cpp"/>
                         <outlet property="flightNumberLabel" destination="s7M-P3-dy6" id="JAn-Gr-Fxi"/>
                         <outlet property="originToDestinationLabel" destination="4PK-y0-9C9" id="8Wk-II-E70"/>
-                        <outlet property="editBtn" destination="uVH-2U-9Y3" id="7UY-5Z-cpp"/>
                         <outlet property="tableView" destination="SH3-AS-e58" id="5Ps-rc-hhv"/>
                         <outlet property="timeLabel" destination="ZV6-0D-XkR" id="x0h-oR-26w"/>
                     </connections>
@@ -405,9 +405,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Airplane" width="672" height="321.83999633789062"/>
+        <image name="Airplane" width="2800" height="1341"/>
         <image name="Background" width="750" height="1334"/>
-        <image name="checkboxOutline" width="491.51998901367188" height="491.51998901367188"/>
+        <image name="checkboxOutline" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="wnn-rn-2EB"/>
