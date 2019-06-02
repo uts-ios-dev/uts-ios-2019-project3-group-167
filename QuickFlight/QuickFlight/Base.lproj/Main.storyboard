@@ -406,9 +406,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Airplane" width="672" height="321.83999633789062"/>
+        <image name="Airplane" width="2800" height="1341"/>
         <image name="Background" width="750" height="1334"/>
-        <image name="checkboxOutline" width="491.51998901367188" height="491.51998901367188"/>
+        <image name="checkboxOutline" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="q0N-ND-g40"/>
