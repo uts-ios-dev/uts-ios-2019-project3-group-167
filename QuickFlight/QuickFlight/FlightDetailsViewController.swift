@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ChangeButton {
+class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ChangeChecklistButton {
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var flightNumberLabel: UILabel!
@@ -18,7 +18,7 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var editBtn: UIButton!
     
     var flight: Flight?
-    var items: [Item] = [Item(itemName: "Banana")]
+    var checklists: [Checklist] = [Checklist(name: "Apple", done: false)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,35 +32,35 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     @IBAction func editBtnTapped(_ sender: Any) {
-        items.append(Item(itemName: ""))
+        checklists.append(Checklist(name: "", done: false))
         tableView.reloadData()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return checklists.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as! ItemCell
         
-        cell.itemTextfield.text = items[indexPath.row].itemName
+        cell.itemTextfield.text = checklists[indexPath.row].name
         
-        if items[indexPath.row].checked {
+        if checklists[indexPath.row].done {
             cell.itemCheckbox.setBackgroundImage(UIImage(named: "checkboxFilled"), for: .normal)
         } else {
             cell.itemCheckbox.setBackgroundImage(UIImage(named: "checkboxOutline"), for: .normal)
         }
 
-        cell.changeButtonDelegate = self
+        cell.checklistButtonDelegate = self
         cell.indexP = indexPath.row
-        cell.items = items
+        cell.checklists = checklists
         
         return cell
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            self.items.remove(at: indexPath.row)
+            self.checklists.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -69,19 +69,9 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         return 50
     }
 
-    func changeButton(checked: Bool, index: Int) {
-        items[index].checked = checked
+    func changeChecklistButton (done: Bool, index: Int) {
+        checklists[index].done = done
         tableView.reloadData()
-    }
-}
-
-class Item {
-    var itemName: String = ""
-    var checked: Bool = false
-    
-    convenience init(itemName: String) {
-        self.init()
-        self.itemName = itemName
     }
 }
 

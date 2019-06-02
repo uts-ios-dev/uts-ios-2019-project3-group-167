@@ -9,8 +9,8 @@
 import Foundation
 
 class Checklist{
-    var name : String
-    var done : Bool
+    var name : String = ""
+    var done : Bool = false
     
     init(name : String, done : Bool){
         self.name = name
