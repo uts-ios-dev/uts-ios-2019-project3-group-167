@@ -42,6 +42,10 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
@@ -63,7 +67,7 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     @IBAction func editBtnTapped(_ sender: Any) {
-        checklists.append(Checklist(name: "", done: false))
+        checklists.append(Checklist(name: "banana", done: true))
         tableView.reloadData()
     }
 
@@ -86,7 +90,8 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         
         do {
             try dataManager.saveItinerary(itineraries)
-        } catch {
+        }
+        catch {
             print("Data not saved")
         }
         

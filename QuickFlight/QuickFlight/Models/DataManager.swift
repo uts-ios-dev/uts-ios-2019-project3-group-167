@@ -57,7 +57,6 @@ class DataManager: Codable {
     
     func loadItinerary() throws -> [Itinerary] {
         let data = try readData(from: itineraryJSONUrl)
-        print("AAAAA \(data)")
         if let itineraries = try? JSONDecoder().decode([Itinerary].self, from: data) {
             return itineraries
         }
