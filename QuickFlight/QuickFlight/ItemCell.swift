@@ -12,16 +12,11 @@ protocol ChangeChecklistButton {
     func changeChecklistButton(done: Bool, index: Int)
 }
 
-protocol CreateItem {
-    func createItem(itemName: String, index: Int)
-}
-
-class ItemCell: UITableViewCell {
+class ItemCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var itemCheckbox: UIButton!
     @IBOutlet weak var itemTextfield: UITextField!
     
     var checklistButtonDelegate: ChangeChecklistButton?
-    var createItemDelegate: CreateItem?
     var indexP: Int?
     var checklists: [Checklist]?
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ChangeChecklistButton {
+class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, ChangeChecklistButton {
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var flightNumberLabel: UILabel!
@@ -147,7 +147,6 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         cell.indexP = indexPath.row
         cell.checklists = checklists
         
-        
         return cell
     }
 
@@ -165,6 +164,11 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     func changeChecklistButton (done: Bool, index: Int) {
         checklists[index].done = done
         tableView.reloadData()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 
