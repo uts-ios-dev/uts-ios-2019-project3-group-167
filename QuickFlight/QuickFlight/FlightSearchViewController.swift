@@ -18,6 +18,7 @@ class FlightSearchViewController: UIViewController, UITableViewDataSource, UITab
     var itineraries: [Itinerary]?
     var searchFlightResults: [Flight] = []
     var isFlightSearching: Bool = false
+    var index: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,7 @@ class FlightSearchViewController: UIViewController, UITableViewDataSource, UITab
             
             let selectedFlight = flightResults[indexPath.row]
             viewController.flight = selectedFlight
+            viewController.index = index
         }
     }
 

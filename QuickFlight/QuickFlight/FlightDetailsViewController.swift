@@ -23,6 +23,7 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     var itineraries: [Itinerary]?
     var checklists: [Checklist] = [Checklist(name: "Apple", done: false)]
     var dataManager = DataManager()
+    var index: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +50,18 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        if segue.destination is FlightSearchViewController {
+            guard let viewController = segue.destination as? FlightSearchViewController else {
+                return
+            }
+            
+            viewController.index = index
+        }
+    }
+    
     @IBAction func editBtnTapped(_ sender: Any) {
         checklists.append(Checklist(name: "", done: false))
         tableView.reloadData()
@@ -62,16 +75,22 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         catch {
             print("Cannot load itineraries")
         }
+
+        if let itineraryIndex = index {
+            itineraries[itineraryIndex] = Itinerary(checkList: checklists, flight: flight!, reminder: itineraries[itineraryIndex].reminder)
+        } else {
+            let itinerary = Itinerary(checkList: checklists, flight: flight!, reminder: 5)
+            itineraries.append(itinerary)
+        }
         
-        let itinerary = Itinerary(checkList: checklists, flight: flight!, reminder: 5)
-        itineraries.append(itinerary)
+        
         do {
             try dataManager.saveItinerary(itineraries)
         } catch {
             print("Data not saved")
         }
         
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popToRootViewController(animated: true);
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

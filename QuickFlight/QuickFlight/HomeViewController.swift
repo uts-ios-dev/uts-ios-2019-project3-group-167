@@ -24,13 +24,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        // Do any additional setup after loading the view.
-
+        super.viewWillAppear(animated)
+        
         do {
             itineraries = try dataManager.loadItinerary()
         } catch {
             print("error")
         }
+        
         itinerariesTable.reloadData()
     }
     
@@ -48,6 +49,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             viewController.flight = selectedItinerary.flight
             viewController.itinerary = selectedItinerary
             viewController.itineraries = itineraries
+            viewController.index = indexPath.row
         }
     }
     
