@@ -16,6 +16,7 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var editBtn: UIButton!
+    @IBOutlet weak var reminderBtn: UIButton!
     
     var flight: Flight?
     var itinerary: Itinerary?
@@ -24,6 +25,9 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        reminderBtn.imageView?.contentMode = .scaleAspectFit
+        reminderBtn.imageEdgeInsets = UIEdgeInsets(top: 32, left: 32, bottom: 32, right: 32)
 
         if let flightDetails = flight {
             dateLabel.text = DateUtils.toDateString(flightDetails.fromDate)
@@ -46,6 +50,10 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.reloadData()
     }
 
+    @IBAction func saveItinerary(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return checklists.count
     }
