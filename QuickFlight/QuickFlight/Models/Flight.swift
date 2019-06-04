@@ -9,14 +9,18 @@
 import Foundation
 
 
+/// Model for flight data
 class Flight: Codable {
+    
+    static let apiEndpoint = "http://demo7895779.mockable.io/quickflights/flights"
     
     var origin : String
     var destination : String
     var flightNumber : String
-    var fromDate: Date
-    var toDate: Date
+    var fromDate: String
+    var toDate: String
     
+    /// Property keys for decoding from JSON
     enum CodingKeys: String, CodingKey {
         case flightNumber = "flightNumber"
         case origin = "origin"
@@ -25,7 +29,15 @@ class Flight: Codable {
         case toDate = "toDate"
     }
     
-    init(origin : String, destination : String, flightNumber : String, fromDate : Date, toDate: Date) {
+    /// Initialises Flight model based on the provided data
+    ///
+    /// - Parameters:
+    ///   - origin: flight origin city
+    ///   - destination: flight destination city
+    ///   - flightNumber: flight code
+    ///   - fromDate: flight departure date
+    ///   - toDate: flight arrival date
+    init(origin : String, destination : String, flightNumber : String, fromDate : String, toDate: String) {
         self.origin = origin
         self.destination = destination
         self.flightNumber = flightNumber
@@ -33,13 +45,14 @@ class Flight: Codable {
         self.toDate = toDate
     }
     
+    /// Initialises Flight by decoding from JSON data
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
         flightNumber = try values.decodeIfPresent(String.self, forKey: .flightNumber)!
         origin = try values.decodeIfPresent(String.self, forKey: .origin)!
         destination = try values.decodeIfPresent(String.self, forKey: .destination)!
-        fromDate = DateUtils.toDate(try values.decodeIfPresent(String.self, forKey: .fromDate)!)!
-        toDate = DateUtils.toDate(try values.decodeIfPresent(String.self, forKey: .toDate)!)!
+        fromDate = try values.decodeIfPresent(String.self, forKey: .fromDate)!
+        toDate = try values.decodeIfPresent(String.self, forKey: .toDate)!
     }
 }
