@@ -17,6 +17,8 @@ import UserNotifications
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        
         let center = UNUserNotificationCenter.current()
         let options: UNAuthorizationOptions = [.sound, .alert]
        
@@ -25,8 +27,10 @@ import UserNotifications
                print(error)
             }
         }
-        
         center.delegate = self
+        
+       
+        
         return true
         
     }

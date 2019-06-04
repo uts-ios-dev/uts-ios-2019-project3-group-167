@@ -9,7 +9,7 @@
 import UIKit
 import UserNotifications
 
-class SettingsViewController: UIViewController, UNUserNotificationCenterDelegate {
+class SettingsViewController: UIViewController {
     
     @IBOutlet weak var optionTextField: UITextField!
     @IBOutlet weak var infoLabel: UILabel!
@@ -53,17 +53,7 @@ class SettingsViewController: UIViewController, UNUserNotificationCenterDelegate
         infoLabel.text = String(Int(sender.value))
     }
     
-    func setNotification() {
-        //configuring the notification content
-        let content = UNMutableNotificationContent()
-        content.title = "Reminder"
-        content.body = "You have an upcoming flight for next week"
-        
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-        let request = UNNotificationRequest(identifier: "timerDone", content: content, trigger: trigger)
-        
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-        
-        //      UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: ((didAllow, error)))
-    }
+   
+    
+   
 }
