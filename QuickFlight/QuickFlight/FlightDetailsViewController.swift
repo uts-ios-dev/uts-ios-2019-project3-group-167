@@ -16,6 +16,7 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var editBtn: UIButton!
+    @IBOutlet weak var reminderBtn: UIButton!
     
     var flight: Flight?
     var itinerary: Itinerary?
@@ -25,6 +26,9 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        reminderBtn.imageView?.contentMode = .scaleAspectFit
+        reminderBtn.imageEdgeInsets = UIEdgeInsets(top: 32, left: 32, bottom: 32, right: 32)
 
         if let flightDetails = flight {
             let fromDate = DateUtils.toDate(flightDetails.fromDate)
@@ -50,6 +54,26 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.reloadData()
     }
 
+    @IBAction func saveItinerary(_ sender: Any) {
+        var itineraries: [Itinerary] = []
+        do {
+            itineraries = try dataManager.loadItinerary()
+        }
+        catch {
+            print("Cannot load itineraries")
+        }
+        
+        let itinerary = Itinerary(checkList: checklists, flight: flight!, reminder: 5)
+        itineraries.append(itinerary)
+        do {
+            try dataManager.saveItinerary(itineraries)
+        } catch {
+            print("Data not saved")
+        }
+        
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return checklists.count
     }
@@ -86,26 +110,6 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     func changeChecklistButton (done: Bool, index: Int) {
         checklists[index].done = done
         tableView.reloadData()
-    }
-    
-    @IBAction func saveItinerary(_ sender: Any) {
-        var itineraries: [Itinerary] = []
-        do {
-            itineraries = try dataManager.loadItinerary()
-        }
-        catch {
-            print("Cannot load itineraries")
-        }
-        
-        let itinerary = Itinerary(checkList: checklists, flight: flight!, reminder: 5)
-        itineraries.append(itinerary)
-        do {
-            try dataManager.saveItinerary(itineraries)
-        } catch {
-            print("Data not saved")
-        }
-        
-        dismiss(animated: true, completion: nil)
     }
 }
 

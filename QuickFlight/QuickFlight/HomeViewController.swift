@@ -19,14 +19,19 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        itinerariesTable.dataSource = self
+        itinerariesTable.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         // Do any additional setup after loading the view.
+
         do {
             itineraries = try dataManager.loadItinerary()
         } catch {
             print("error")
         }
-        itinerariesTable.dataSource = self
-        itinerariesTable.delegate = self
+        itinerariesTable.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
