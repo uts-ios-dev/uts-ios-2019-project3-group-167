@@ -8,15 +8,16 @@
 
 import Foundation
 
+/// This is a class to provide Checklist model
 class Checklist: Codable {
     var name : String = ""
     var done : Bool = false
     
-    enum CodingKeys: String, CodingKey {
-        case name = "name"
-        case done = "done"
-    }
-    
+    /// Initializes new checklist object
+    ///
+    /// - Parameters:
+    ///   - name: item name
+    ///   - done: checklist of the item
     init(name : String, done : Bool){
         self.name = name
         self.done = done
