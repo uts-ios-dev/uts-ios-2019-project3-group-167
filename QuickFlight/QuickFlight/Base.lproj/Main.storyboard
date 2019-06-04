@@ -307,11 +307,11 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KNi-Ow-dRH">
-                                <rect key="frame" x="8" y="90" width="393" height="149"/>
+                                <rect key="frame" x="8" y="90" width="393" height="127"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ixx-2h-nOS">
-                                        <rect key="frame" x="289" y="8" width="88" height="29"/>
+                                        <rect key="frame" x="17" y="90" width="88" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <state key="normal" title="Change Flight"/>
@@ -320,47 +320,48 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sydney to Melbourne" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4PK-y0-9C9">
-                                        <rect key="frame" x="17" y="48" width="227" height="19"/>
+                                        <rect key="frame" x="17" y="8" width="227" height="19"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="QF 423" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7M-P3-dy6">
-                                        <rect key="frame" x="17" y="75" width="53" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Flight Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C2p-2C-xql">
-                                        <rect key="frame" x="17" y="15" width="113" height="22"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="QF 423" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7M-P3-dy6">
+                                        <rect key="frame" x="17" y="35" width="53" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="18 August 2019" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="58C-oe-uuL">
-                                        <rect key="frame" x="86" y="76" width="299" height="19"/>
+                                        <rect key="frame" x="86" y="36" width="299" height="19"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10:00 - 12:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZV6-0D-XkR">
-                                        <rect key="frame" x="252" y="62" width="125" height="21"/>
+                                        <rect key="frame" x="260" y="8" width="125" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reminder 4 hours before" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Lh-IF-Axs">
-                                        <rect key="frame" x="17" y="124" width="156" height="17"/>
+                                        <rect key="frame" x="17" y="63" width="156" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="olx-ln-ehw">
+                                        <rect key="frame" x="349" y="83" width="36" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                        <state key="normal" image="Reminder"/>
+                                        <connections>
+                                            <segue destination="Bvr-4N-3Eg" kind="show" id="gSp-2Z-xmE"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -385,9 +386,9 @@
                         <viewLayoutGuide key="safeArea" id="Mfe-O3-o5p"/>
                     </view>
                     <navigationItem key="navigationItem" title="Sydney to Melbourne" id="Gb0-TW-NR7">
-                        <barButtonItem key="rightBarButtonItem" title="Settings" id="jUB-bg-4lp">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="jUB-bg-4lp">
                             <connections>
-                                <segue destination="Bvr-4N-3Eg" kind="show" id="waE-dc-21i"/>
+                                <action selector="saveItinerary:" destination="foc-u2-Y2c" id="Vwl-kg-Dk8"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -396,6 +397,7 @@
                         <outlet property="editBtn" destination="uVH-2U-9Y3" id="7UY-5Z-cpp"/>
                         <outlet property="flightNumberLabel" destination="s7M-P3-dy6" id="JAn-Gr-Fxi"/>
                         <outlet property="originToDestinationLabel" destination="4PK-y0-9C9" id="8Wk-II-E70"/>
+                        <outlet property="reminderBtn" destination="olx-ln-ehw" id="MmU-LY-L0E"/>
                         <outlet property="tableView" destination="SH3-AS-e58" id="5Ps-rc-hhv"/>
                         <outlet property="timeLabel" destination="ZV6-0D-XkR" id="x0h-oR-26w"/>
                     </connections>
@@ -406,12 +408,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Airplane" width="2800" height="1341"/>
+        <image name="Airplane" width="672" height="321.83999633789062"/>
         <image name="Background" width="750" height="1334"/>
-        <image name="checkboxOutline" width="512" height="512"/>
+        <image name="Reminder" width="36" height="36"/>
+        <image name="checkboxOutline" width="491.51998901367188" height="491.51998901367188"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="q0N-ND-g40"/>
+        <segue reference="wnn-rn-2EB"/>
         <segue reference="Ku0-5z-to1"/>
     </inferredMetricsTieBreakers>
 </document>
