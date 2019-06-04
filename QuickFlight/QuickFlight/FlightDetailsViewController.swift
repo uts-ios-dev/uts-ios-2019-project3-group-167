@@ -60,16 +60,15 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         
         tableView.reloadData()
         
-        guard let itineraryIndex = index,
-            let itinerariesValue = itineraries else {
+        guard let itineraryIndex = index else {
                 return
         }
         
         if let reminderValue = reminder {
-            itinerariesValue[itineraryIndex].reminder = reminderValue
+            itineraries[itineraryIndex].reminder = reminderValue
         }
         
-        reminderLabel.text = "Reminder \(itinerariesValue[itineraryIndex].reminder) hour(s) prior"
+        reminderLabel.text = "Reminder \(itineraries[itineraryIndex].reminder) hour(s) prior"
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
