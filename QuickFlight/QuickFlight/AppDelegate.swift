@@ -24,7 +24,7 @@ import UserNotifications
        
        center.requestAuthorization(options: options) { (granted,error) in
             if error != nil {
-               print(error)
+               print("Authorization error")
             }
         }
         center.delegate = self
