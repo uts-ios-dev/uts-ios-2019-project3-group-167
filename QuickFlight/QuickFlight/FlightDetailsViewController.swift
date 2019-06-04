@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ChangeButton {
+class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ChangeChecklistButton {
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var flightNumberLabel: UILabel!
@@ -16,51 +16,118 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var editBtn: UIButton!
+    @IBOutlet weak var reminderBtn: UIButton!
     
     var flight: Flight?
-    var items: [Item] = [Item(itemName: "Banana")]
+    var itinerary: Itinerary?
+    var itineraries: [Itinerary] = []
+    var checklists: [Checklist] = []
+    var dataManager = DataManager()
+    var index: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        reminderBtn.imageView?.contentMode = .scaleAspectFit
+        reminderBtn.imageEdgeInsets = UIEdgeInsets(top: 32, left: 32, bottom: 32, right: 32)
 
         if let flightDetails = flight {
-            dateLabel.text = DateUtils.toDateString(flightDetails.fromDate)
+            let fromDate = DateUtils.toDate(flightDetails.fromDate)
+            let toDate = DateUtils.toDate(flightDetails.toDate)
+            
+            dateLabel.text = "\(DateUtils.toDateString(fromDate!))"
             flightNumberLabel.text = flightDetails.flightNumber
             originToDestinationLabel.text = "\(flightDetails.origin) to \(flightDetails.destination)"
-            timeLabel.text = "\(DateUtils.toTimeString(flightDetails.fromDate)) - \(DateUtils.toTimeString(flightDetails.toDate))"
+            timeLabel.text = "\(DateUtils.toTimeString(fromDate!)) - \(DateUtils.toTimeString(toDate!))"
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        do {
+            itineraries = try dataManager.loadItinerary()
+        }
+        catch {
+            print("Cannot load itineraries")
+        }
+        
+        if let itineraryIndex = index {
+            checklists = itineraries[itineraryIndex].checklists
+        } else {
+            checklists = [Checklist(name: "", done: false)]
+        }
+        
+        tableView.reloadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if self.isMovingFromParent {
+            
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        if segue.destination is FlightSearchViewController {
+            guard let viewController = segue.destination as? FlightSearchViewController else {
+                return
+            }
+            
+            viewController.index = index
         }
     }
     
     @IBAction func editBtnTapped(_ sender: Any) {
-        items.append(Item(itemName: ""))
+        checklists.append(Checklist(name: "", done: false))
         tableView.reloadData()
     }
 
+    @IBAction func saveItinerary(_ sender: Any) {
+        if let itineraryIndex = index {
+            itineraries[itineraryIndex] = Itinerary(checkList: checklists, flight: flight!, reminder: itineraries[itineraryIndex].reminder)
+        } else {
+            let itinerary = Itinerary(checkList: checklists, flight: flight!, reminder: 5)
+            itineraries.append(itinerary)
+        }
+        
+        do {
+            try dataManager.saveItinerary(itineraries)
+        }
+        catch {
+            print("Data not saved")
+        }
+        
+        self.navigationController?.popToRootViewController(animated: true);
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return checklists.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as! ItemCell
         
-        cell.itemTextfield.text = items[indexPath.row].itemName
+        cell.itemTextfield.text = checklists[indexPath.row].name
         
-        if items[indexPath.row].checked {
+        if checklists[indexPath.row].done {
             cell.itemCheckbox.setBackgroundImage(UIImage(named: "checkboxFilled"), for: .normal)
         } else {
             cell.itemCheckbox.setBackgroundImage(UIImage(named: "checkboxOutline"), for: .normal)
         }
 
-        cell.changeButtonDelegate = self
+        cell.checklistButtonDelegate = self
         cell.indexP = indexPath.row
-        cell.items = items
+        cell.checklists = checklists
+        
         
         return cell
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            self.items.remove(at: indexPath.row)
+            self.checklists.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -69,19 +136,9 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         return 50
     }
 
-    func changeButton(checked: Bool, index: Int) {
-        items[index].checked = checked
+    func changeChecklistButton (done: Bool, index: Int) {
+        checklists[index].done = done
         tableView.reloadData()
-    }
-}
-
-class Item {
-    var itemName: String = ""
-    var checked: Bool = false
-    
-    convenience init(itemName: String) {
-        self.init()
-        self.itemName = itemName
     }
 }
 

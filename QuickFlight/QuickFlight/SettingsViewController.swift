@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import UserNotifications
 
-class SettingsViewController: UIViewController, UIPickerViewDelegate {
+class SettingsViewController: UIViewController, UNUserNotificationCenterDelegate {
     
     @IBOutlet weak var optionTextField: UITextField!
     @IBOutlet weak var infoLabel: UILabel!
@@ -18,5 +19,23 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate {
 
     @IBAction func saveSettings(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
+        
+        //configuring the notification content
+        let content = UNMutableNotificationContent()
+            content.title = "Reminder"
+            content.body = "You have an upcoming flight for next week"
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let request = UNNotificationRequest(identifier: "timerDone", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+//      UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: ((didAllow, error)))
+    }
+   
+    
 }

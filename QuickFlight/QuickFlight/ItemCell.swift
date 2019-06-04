@@ -8,8 +8,8 @@
 
 import UIKit
 
-protocol ChangeButton {
-    func changeButton(checked: Bool, index: Int)
+protocol ChangeChecklistButton {
+    func changeChecklistButton(done: Bool, index: Int)
 }
 
 protocol CreateItem {
@@ -20,24 +20,22 @@ class ItemCell: UITableViewCell {
     @IBOutlet weak var itemCheckbox: UIButton!
     @IBOutlet weak var itemTextfield: UITextField!
     
-    var changeButtonDelegate: ChangeButton?
+    var checklistButtonDelegate: ChangeChecklistButton?
     var createItemDelegate: CreateItem?
     var indexP: Int?
-    var items: [Item]?
+    var checklists: [Checklist]?
     
     @IBAction func checkboxAction(_ sender: UIButton) {
-        if items![indexP!].checked {
-            print("false")
-            changeButtonDelegate?.changeButton(checked: false, index: indexP!)
+        if checklists![indexP!].done {
+            checklistButtonDelegate?.changeChecklistButton(done: false, index: indexP!)
         } else {
-            changeButtonDelegate?.changeButton(checked: true, index: indexP!)
+            checklistButtonDelegate?.changeChecklistButton(done: true, index: indexP!)
         }
     }
     
     @IBAction func itemTextfieldAction(_ sender: UITextField) {
-        print(itemTextfield.text!)
         // This section will save the data to a new array when database is connected.
-        items![indexP!].itemName = itemTextfield.text!
+        checklists![indexP!].name = itemTextfield.text!
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

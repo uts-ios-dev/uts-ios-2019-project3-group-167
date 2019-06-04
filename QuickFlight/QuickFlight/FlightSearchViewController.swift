@@ -9,19 +9,25 @@
 import Alamofire
 import UIKit
 
-class FlightSearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class FlightSearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var flightResultsTable: UITableView!
     
     var flightResults: [Flight] = []
-    
+    var itineraries: [Itinerary]?
+    var searchFlightResults: [Flight] = []
+    var isFlightSearching: Bool = false
+    var index: Int?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         flightResultsTable.dataSource = self
         flightResultsTable.delegate = self
-        
+        searchBar.delegate = self
+        searchBar.returnKeyType = UIReturnKeyType.done
+
         fetchFlights()
     }
     
@@ -37,16 +43,25 @@ class FlightSearchViewController: UIViewController, UITableViewDataSource, UITab
             
             let selectedFlight = flightResults[indexPath.row]
             viewController.flight = selectedFlight
+            viewController.index = index
         }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFlightSearching {
+            return searchFlightResults.count
+        }
+
         return flightResults.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "flightResultCell", for: indexPath)
-        let flight = flightResults[indexPath.row]
+
+        var flight = flightResults[indexPath.row]
+        if isFlightSearching {
+            flight = searchFlightResults[indexPath.row]
+        }
         
         let destinationAndOriginLabel: UILabel = cell.viewWithTag(1) as! UILabel
         let flightNumberLabel: UILabel = cell.viewWithTag(2) as! UILabel
@@ -55,8 +70,11 @@ class FlightSearchViewController: UIViewController, UITableViewDataSource, UITab
         
         destinationAndOriginLabel.text = "\(flight.origin) to \(flight.destination)"
         flightNumberLabel.text = flight.flightNumber
-        fromDateLabel.text = DateUtils.toDateString(flight.fromDate)
-        timeLabel.text = "\(DateUtils.toTimeString(flight.fromDate)) - \(DateUtils.toTimeString(flight.toDate))"
+        
+        let fromDate = DateUtils.toDate(flight.fromDate)
+        let toDate = DateUtils.toDate(flight.toDate)
+        fromDateLabel.text = DateUtils.toDateString(fromDate!)
+        timeLabel.text = "\(DateUtils.toTimeString(fromDate!)) - \(DateUtils.toTimeString(toDate!))"
         
         return cell
     }
@@ -65,6 +83,18 @@ class FlightSearchViewController: UIViewController, UITableViewDataSource, UITab
         return 70
     }
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard let textToSearch = searchBar.text, !textToSearch.isEmpty else {
+            isFlightSearching = false
+            flightResultsTable.reloadData()
+            return
+        }
+
+        isFlightSearching = true
+        searchFlightResults = flightResults.filter({$0.flightNumber.contains(textToSearch)})
+        flightResultsTable.reloadData()
+    }
+
     func fetchFlights() {
         let flightsEndpoint: String = "http://demo7895779.mockable.io/quickflights/flights"
         
