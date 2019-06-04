@@ -8,14 +8,14 @@
 
 import Foundation
 
-class Itinerary{
+class Itinerary: Codable {
     
     var checklists : [Checklist] = []
     var flight : Flight
     var reminder : Int
     
     enum CodingKeys: String, CodingKey {
-        case checklist = "checklist"
+        case checklists = "checklists"
         case flight = "flight"
         case reminder = "reminder"
     }
@@ -29,7 +29,7 @@ class Itinerary{
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
-        checklists = try values.decodeIfPresent([Checklist].self, forKey: .checklist)!
+        checklists = try values.decodeIfPresent([Checklist].self, forKey: .checklists)!
         flight = try values.decodeIfPresent(Flight.self, forKey: .flight)!
         reminder = try values.decodeIfPresent(Int.self, forKey: .reminder)!
     }

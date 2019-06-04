@@ -68,8 +68,11 @@ class FlightSearchViewController: UIViewController, UITableViewDataSource, UITab
         
         destinationAndOriginLabel.text = "\(flight.origin) to \(flight.destination)"
         flightNumberLabel.text = flight.flightNumber
-        fromDateLabel.text = DateUtils.toDateString(flight.fromDate)
-        timeLabel.text = "\(DateUtils.toTimeString(flight.fromDate)) - \(DateUtils.toTimeString(flight.toDate))"
+        
+        let fromDate = DateUtils.toDate(flight.fromDate)
+        let toDate = DateUtils.toDate(flight.toDate)
+        fromDateLabel.text = DateUtils.toDateString(fromDate!)
+        timeLabel.text = "\(DateUtils.toTimeString(fromDate!)) - \(DateUtils.toTimeString(toDate!))"
         
         return cell
     }

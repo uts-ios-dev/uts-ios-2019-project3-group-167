@@ -21,15 +21,19 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     var itinerary: Itinerary?
     var itineraries: [Itinerary]?
     var checklists: [Checklist] = [Checklist(name: "Apple", done: false)]
+    var dataManager = DataManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if let flightDetails = flight {
-            dateLabel.text = DateUtils.toDateString(flightDetails.fromDate)
+            let fromDate = DateUtils.toDate(flightDetails.fromDate)
+            let toDate = DateUtils.toDate(flightDetails.toDate)
+            
+            dateLabel.text = "\(DateUtils.toDateString(fromDate!))"
             flightNumberLabel.text = flightDetails.flightNumber
             originToDestinationLabel.text = "\(flightDetails.origin) to \(flightDetails.destination)"
-            timeLabel.text = "\(DateUtils.toTimeString(flightDetails.fromDate)) - \(DateUtils.toTimeString(flightDetails.toDate))"
+            timeLabel.text = "\(DateUtils.toTimeString(fromDate!)) - \(DateUtils.toTimeString(toDate!))"
         }
     }
     
@@ -82,6 +86,26 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     func changeChecklistButton (done: Bool, index: Int) {
         checklists[index].done = done
         tableView.reloadData()
+    }
+    
+    @IBAction func saveItinerary(_ sender: Any) {
+        var itineraries: [Itinerary] = []
+        do {
+            itineraries = try dataManager.loadItinerary()
+        }
+        catch {
+            print("Cannot load itineraries")
+        }
+        
+        let itinerary = Itinerary(checkList: checklists, flight: flight!, reminder: 5)
+        itineraries.append(itinerary)
+        do {
+            try dataManager.saveItinerary(itineraries)
+        } catch {
+            print("Data not saved")
+        }
+        
+        dismiss(animated: true, completion: nil)
     }
 }
 
