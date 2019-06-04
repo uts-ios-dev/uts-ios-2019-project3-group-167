@@ -9,25 +9,28 @@
 import UIKit
 import UserNotifications
 
+/// This is a controller mainly for displaying flight details and itinerary to be prepared before flight
+/// date. This controller also serves a sendNotification functionality after pressing Save button.
 class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, ChangeChecklistButton, UNUserNotificationCenterDelegate {
     
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var editBtn: UIButton!
     @IBOutlet weak var flightNumberLabel: UILabel!
     @IBOutlet weak var originToDestinationLabel: UILabel!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var editBtn: UIButton!
     @IBOutlet weak var reminderBtn: UIButton!
     @IBOutlet weak var reminderLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var timeLabel: UILabel!
     
-    var flight: Flight?
-    var itinerary: Itinerary?
-    var itineraries: [Itinerary] = []
     var checklists: [Checklist] = []
     var dataManager = DataManager()
+    var flight: Flight?
     var index: Int?
+    var itinerary: Itinerary?
+    var itineraries: [Itinerary] = []
     var reminder: Int?
     
+    /// Sets flight details when the view is loaded
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,6 +48,7 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
+    /// Fetches itineraries from localdata and sets reminder value
     override func viewWillAppear(_ animated: Bool) {
         do {
             itineraries = try dataManager.loadItinerary()
@@ -59,19 +63,19 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
             checklists = [Checklist(name: "", done: false)]
         }
         
-        tableView.reloadData()
-        
         guard let itineraryIndex = index else {
-                return
+            return
         }
         
         if let reminderValue = reminder {
             itineraries[itineraryIndex].reminder = reminderValue
         }
         
+        tableView.reloadData()
         reminderLabel.text = "Reminder \(itineraries[itineraryIndex].reminder) hour(s) prior"
     }
     
+    /// Prepare some data to be sent to the next ViewController (FlightSearchViewController).
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
@@ -94,7 +98,9 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         checklists.append(Checklist(name: "", done: false))
         tableView.reloadData()
     }
-
+    
+    /// Saves itinerary to list of itinieraries and sends local notification within
+    /// time specified in the flight details.
     @IBAction func saveItinerary(_ sender: Any) {
         if let itineraryIndex = index {
             var newReminder: Int?
@@ -129,10 +135,12 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         self.navigationController?.popToRootViewController(animated: true);
     }
     
+    /// Returns row numbers to be populated in the tableview
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return checklists.count
     }
     
+    /// Returns custom cell inside tableview with checklist and textfield
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as! ItemCell
         
@@ -150,28 +158,38 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
 
         return cell
     }
-
+    
+    /// Sets delete functionality for each cell
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             self.checklists.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
-
+    
+    /// Returns height of the tableview
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
 
+    /// Sets checklist done with boolean and reloads data afterwards
+    ///
+    /// - Parameters:
+    ///   - done: checklist for an item
+    ///   - index: index of the item
     func changeChecklistButton (done: Bool, index: Int) {
         checklists[index].done = done
         tableView.reloadData()
     }
 
+    /// Dismisses keyboard when a user clicks return key
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
 
+    /// Set reminder notifications before flight date and time. The value depends
+    /// on the reminder value that a user set (default is 5 hours).
     func setNotification() {
         var departureDate: Date
         var reminderTime: Int

@@ -9,57 +9,67 @@
 import Foundation
 
 class DataManager: Codable {
+    
     let itineraryJSONUrl: URL
     
     enum DataError: Error {
-        case dataNotFound
+        case dataNotReadable
+        case dataNotSaveable
     }
     
     init() {
-        // Gets the document directory
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        // Creates a path to save and load game settings in a json file
         itineraryJSONUrl = documentsDirectory.appendingPathComponent("itineraries").appendingPathExtension("json")
     }
     
-    /**
-     Overwrites data to the archive (JSON File)
-     */
+
+    /// Overwrites data to the archive (JSON File)
+    ///
+    /// - Parameters:
+    ///   - data: data to be overwritten
+    ///   - archive: url where data is saved
+    /// - Throws: DataError.dataNotSaveable
     func writeData(_ data: Data, to archive: URL) throws {
         do {
             try data.write(to: archive, options: .noFileProtection)
         }
         catch {
-            throw error
+            throw DataError.dataNotSaveable
         }
     }
-    
-    /**
-     Loads data from the archive (JSON File)
-     */
+
+    /// Loads data from the archive (JSON File)
+    ///
+    /// - Parameter archive: url where data is saved
+    /// - Returns: Data to be loaded
+    /// - Throws: DataError.dataNotReadable
     func readData(from archive: URL) throws -> Data {
         do {
             if let data = try? Data(contentsOf: archive) {
-                print(data)
                 return data
             }
         }
-        throw DataError.dataNotFound
+        throw DataError.dataNotReadable
     }
     
-    /**
-     Saves game scores to a game-scores.json
-     */
+    /// Save new itineraries to the itineraries.json
+    ///
+    /// - Parameter itineraries: list of itineraries
+    /// - Throws: DataError.dataNotSaveable
     func saveItinerary(_ itineraries: [Itinerary]) throws {
         let itineraryJSON = try JSONEncoder().encode(itineraries)
         try writeData(itineraryJSON, to: itineraryJSONUrl)
     }
     
+    /// Load the saved itineraries from itineraries.json
+    ///
+    /// - Returns: List of itineraries that was saved before
+    /// - Throws: DataError.dataNotReadable
     func loadItinerary() throws -> [Itinerary] {
         let data = try readData(from: itineraryJSONUrl)
         if let itineraries = try? JSONDecoder().decode([Itinerary].self, from: data) {
             return itineraries
         }
-        throw DataError.dataNotFound
+        throw DataError.dataNotReadable
     }
 }
