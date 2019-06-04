@@ -20,7 +20,7 @@ class Itinerary: Codable {
         case reminder = "reminder"
     }
     
-    init(checkList : [Checklist], flight : Flight, reminder : Int) {
+    init(checkList : [Checklist], flight : Flight, reminder : Int = 3) {
         self.checklists = checkList
         self.flight = flight
         self.reminder = reminder

@@ -132,14 +132,14 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dni-W1-Ecr">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dni-W1-Ecr">
                                 <rect key="frame" x="280" y="190" width="28" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="12" minValue="0.0" maxValue="24" translatesAutoresizingMaskIntoConstraints="NO" id="odo-te-nIi">
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="24" translatesAutoresizingMaskIntoConstraints="NO" id="odo-te-nIi">
                                 <rect key="frame" x="18" y="186" width="235" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
@@ -157,15 +157,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="aJo-5z-2vl"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Settings" id="Pdc-kj-KSM">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="JEZ-it-YZA">
-                            <connections>
-                                <action selector="saveSettings:" destination="Bvr-4N-3Eg" id="ReW-jW-P8B"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Settings" id="Pdc-kj-KSM"/>
                     <connections>
                         <outlet property="infoLabel" destination="dni-W1-Ecr" id="23Q-3E-p2W"/>
+                        <outlet property="reminderSlider" destination="odo-te-nIi" id="4gT-Zm-6M7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RKQ-PZ-H85" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -348,7 +343,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reminder 4 hours before" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Lh-IF-Axs">
-                                        <rect key="frame" x="17" y="63" width="156" height="17"/>
+                                        <rect key="frame" x="17" y="63" width="356" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -398,6 +393,7 @@
                         <outlet property="flightNumberLabel" destination="s7M-P3-dy6" id="JAn-Gr-Fxi"/>
                         <outlet property="originToDestinationLabel" destination="4PK-y0-9C9" id="8Wk-II-E70"/>
                         <outlet property="reminderBtn" destination="olx-ln-ehw" id="MmU-LY-L0E"/>
+                        <outlet property="reminderLabel" destination="8Lh-IF-Axs" id="cxk-0Z-gfs"/>
                         <outlet property="tableView" destination="SH3-AS-e58" id="5Ps-rc-hhv"/>
                         <outlet property="timeLabel" destination="ZV6-0D-XkR" id="x0h-oR-26w"/>
                     </connections>
