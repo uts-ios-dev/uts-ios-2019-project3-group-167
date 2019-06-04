@@ -9,7 +9,10 @@
 import Foundation
 
 
+/// Model for flight data
 class Flight: Codable {
+    
+    static let apiEndpoint = "http://demo7895779.mockable.io/quickflights/flights"
     
     var origin : String
     var destination : String
@@ -17,6 +20,7 @@ class Flight: Codable {
     var fromDate: String
     var toDate: String
     
+    /// Property keys for decoding from JSON
     enum CodingKeys: String, CodingKey {
         case flightNumber = "flightNumber"
         case origin = "origin"
@@ -25,6 +29,14 @@ class Flight: Codable {
         case toDate = "toDate"
     }
     
+    /// Initialises Flight model based on the provided data
+    ///
+    /// - Parameters:
+    ///   - origin: flight origin city
+    ///   - destination: flight destination city
+    ///   - flightNumber: flight code
+    ///   - fromDate: flight departure date
+    ///   - toDate: flight arrival date
     init(origin : String, destination : String, flightNumber : String, fromDate : String, toDate: String) {
         self.origin = origin
         self.destination = destination
@@ -33,6 +45,7 @@ class Flight: Codable {
         self.toDate = toDate
     }
     
+    /// Initialises Flight by decoding from JSON data
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         

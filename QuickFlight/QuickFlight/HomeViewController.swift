@@ -8,14 +8,15 @@
 
 import UIKit
 
+/// Controller for the Home Screen
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var itinerariesTable: UITableView!
     
+    var dataManager = DataManager()
     var itineraries: [Itinerary] = []
     
-    var dataManager = DataManager()
-    
+    /// Delegates and assigns data source for itineraries table
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,18 +24,20 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         itinerariesTable.delegate = self
     }
     
+    /// Loads itineraries list and reloads displayed table data
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         do {
             itineraries = try dataManager.loadItinerary()
         } catch {
-            print("error")
+            print("Load itinerary error")
         }
         
         itinerariesTable.reloadData()
     }
     
+    /// Passes itinerary data when navigating to FlightDetailsViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
@@ -53,10 +56,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    /// Returns number of rows for itineraries table
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return itineraries.count
     }
     
+    /// Sets displayed texts in itineraries table cells according to the itinerary data
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "itineraryCell", for: indexPath)
         let itinerary = itineraries[indexPath.row]
@@ -79,16 +84,25 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
     
+    /// Returns itineraries table cell height
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 85
     }
     
+    /// Displays delete alert on delete swipe
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             createDeleteAlert(title: "Delete Confirmation", message: "Do you want to delete this itinerary?", indexPath: indexPath, tableView: tableView)
         }
     }
     
+    /// Creates alert for deleting itinerary
+    ///
+    /// - Parameters:
+    ///   - title: Alert title
+    ///   - message: Message to be displayed in the delete alert
+    ///   - indexPath: Index of itinerary to be removed
+    ///   - tableView: Itinerary table UI
     func createDeleteAlert(title: String, message: String, indexPath: IndexPath, tableView: UITableView) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
