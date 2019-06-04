@@ -101,7 +101,7 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
             if let reminderValue = reminder {
                 newReminder = reminderValue
             } else {
-                newReminder = 5
+                newReminder = itineraries[itineraryIndex].reminder
             }
             
             itineraries[itineraryIndex] = Itinerary(checkList: checklists, flight: flight!, reminder: newReminder!)
