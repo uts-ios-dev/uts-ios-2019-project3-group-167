@@ -17,6 +17,7 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var editBtn: UIButton!
     @IBOutlet weak var reminderBtn: UIButton!
+    @IBOutlet weak var reminderLabel: UILabel!
     
     var flight: Flight?
     var itinerary: Itinerary?
@@ -24,6 +25,7 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     var checklists: [Checklist] = [Checklist(name: "Apple", done: false)]
     var dataManager = DataManager()
     var index: Int?
+    var reminder: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,14 +46,17 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
         
-        if self.isMovingFromParent {
-            
+        guard let itineraryIndex = index,
+            let itinerariesValue = itineraries else {
+                return
         }
+        
+        if let reminderValue = reminder {
+            itinerariesValue[itineraryIndex].reminder = reminderValue
+        }
+        
+        reminderLabel.text = "Reminder \(itinerariesValue[itineraryIndex].reminder) hour(s) prior"
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -63,6 +68,12 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
             }
             
             viewController.index = index
+        }
+        
+        if segue.destination is SettingsViewController {
+            if let viewController = segue.destination as? SettingsViewController {
+                viewController.reminder = itinerary?.reminder
+            }
         }
     }
     
@@ -81,12 +92,27 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         }
 
         if let itineraryIndex = index {
-            itineraries[itineraryIndex] = Itinerary(checkList: checklists, flight: flight!, reminder: itineraries[itineraryIndex].reminder)
+            var newReminder: Int?
+            
+            if let reminderValue = reminder {
+                newReminder = reminderValue
+            } else {
+                newReminder = 5
+            }
+            
+            itineraries[itineraryIndex] = Itinerary(checkList: checklists, flight: flight!, reminder: newReminder!)
         } else {
-            let itinerary = Itinerary(checkList: checklists, flight: flight!, reminder: 5)
+            var newReminder: Int?
+            
+            if let reminderValue = reminder {
+                newReminder = reminderValue
+            } else {
+                newReminder = 5
+            }
+            
+            let itinerary = Itinerary(checkList: checklists, flight: flight!, reminder: newReminder!)
             itineraries.append(itinerary)
         }
-        
         
         do {
             try dataManager.saveItinerary(itineraries)
