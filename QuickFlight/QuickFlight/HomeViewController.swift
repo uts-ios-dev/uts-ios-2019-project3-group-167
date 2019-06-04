@@ -80,4 +80,34 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 85
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            createDeleteAlert(title: "Delete Confirmation", message: "Do you want to delete this itinerary?", indexPath: indexPath, tableView: tableView)
+        }
+    }
+    
+    func createDeleteAlert(title: String, message: String, indexPath: IndexPath, tableView: UITableView) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+            
+            self.itineraries.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            do {
+                try self.dataManager.saveItinerary(self.itineraries)
+            }
+            catch {
+                print("Itineraries are not saved")
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
 }
