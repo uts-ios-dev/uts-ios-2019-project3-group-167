@@ -27,6 +27,13 @@ class DateUtils {
         return dateFormatter.string(from: date)
     }
     
+    static func toDateTimeString(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMM yyyy HH:mm"
+        
+        return dateFormatter.string(from: date)
+    }
+    
     static func toTimeString(_ date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
