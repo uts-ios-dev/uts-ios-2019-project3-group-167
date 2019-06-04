@@ -8,6 +8,7 @@
 
 import Foundation
 
+// This is a class to provide Itenerary model which inherits from Codable
 class Itinerary: Codable {
     
     var checklists : [Checklist] = []
@@ -20,12 +21,19 @@ class Itinerary: Codable {
         case reminder = "reminder"
     }
     
-    init(checkList : [Checklist], flight : Flight, reminder : Int = 3) {
+    /// Initialise the itinerary model based on checklist class, flight class and the reminder value.
+    ///
+    /// - Parameters:
+    ///   - checkList: the checklist class which contains string name and boolean don
+    ///   - flight: the flight class which contains the the information of flight
+    ///   - reminder: the reminder which is the value for set time to send the notification
+    init(checkList: [Checklist], flight: Flight, reminder: Int) {
         self.checklists = checkList
         self.flight = flight
         self.reminder = reminder
     }
     
+    /// Initialises Itinerary by decoding from JSON Data
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
