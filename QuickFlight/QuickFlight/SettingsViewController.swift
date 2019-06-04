@@ -11,9 +11,8 @@ import UserNotifications
 
 class SettingsViewController: UIViewController {
     
-    @IBOutlet weak var optionTextField: UITextField!
     @IBOutlet weak var infoLabel: UILabel!
-    @IBOutlet weak var reminderSlider: UISlider!
+    @IBOutlet weak var reminderStepper: UIStepper!
     
     var reminder: Int?
     
@@ -25,12 +24,12 @@ class SettingsViewController: UIViewController {
         super.viewWillAppear(true)
         
         if let reminderValue = reminder {
-            reminderSlider.setValue(Float(reminderValue), animated: false)
+            reminderStepper.value = Double(reminderValue)
         } else {
-            reminderSlider.setValue(5.0, animated: false)
+            reminderStepper.value = 5.0
         }
         
-        infoLabel.text = String(Int(reminderSlider.value))
+        infoLabel.text = String(Int(reminderStepper.value))
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -44,13 +43,13 @@ class SettingsViewController: UIViewController {
         
         if self.isMovingFromParent {
             if let flightDetailsViewController = viewControllers[flightDetailsViewControllerIndex] as? FlightDetailsViewController {
-                flightDetailsViewController.reminder = Int(reminderSlider.value)
+                flightDetailsViewController.reminder = Int(reminderStepper.value)
             }
         }
     }
-   
-    @IBAction func slider(_ sender: UISlider) {
-        infoLabel.text = String(Int(sender.value))
+    
+    @IBAction func stepperValueChanged(_ sender: Any) {
+        infoLabel.text = String(Int(reminderStepper.value))
     }
     
    

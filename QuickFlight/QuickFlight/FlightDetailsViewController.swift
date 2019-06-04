@@ -9,7 +9,7 @@
 import UIKit
 import UserNotifications
 
-class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ChangeChecklistButton, UNUserNotificationCenterDelegate {
+class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, ChangeChecklistButton, UNUserNotificationCenterDelegate {
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var flightNumberLabel: UILabel!
@@ -102,7 +102,7 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
             if let reminderValue = reminder {
                 newReminder = reminderValue
             } else {
-                newReminder = 5
+                newReminder = itineraries[itineraryIndex].reminder
             }
             
             itineraries[itineraryIndex] = Itinerary(checkList: checklists, flight: flight!, reminder: newReminder!)
@@ -147,8 +147,7 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         cell.checklistButtonDelegate = self
         cell.indexP = indexPath.row
         cell.checklists = checklists
-        
-        
+
         return cell
     }
 
@@ -167,11 +166,16 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         checklists[index].done = done
         tableView.reloadData()
     }
-    
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
     func setNotification() {
         var departureDate: Date
         var reminderTime: Int
-        
+
         if let itineraryIndex = index {
             departureDate = DateUtils.toDate(itineraries[itineraryIndex].flight.fromDate)!
             reminderTime = itineraries[itineraryIndex].reminder
@@ -183,17 +187,17 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
                 reminderTime = 5
             }
         }
-        
+
         let calendar = Calendar.current
         let newdate = calendar.date(byAdding: .hour, value: 0 - reminderTime, to: departureDate)
         let components = calendar.dateComponents([.day, .month, .year, .hour, .minute], from: newdate!)
-        
+
         let content = UNMutableNotificationContent()
         content.title = "Reminder"
         content.body = "You have an upcoming flight at \(DateUtils.toDateTimeString(departureDate))"
         let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
         let request = UNNotificationRequest(identifier: "timerDone", content: content, trigger: trigger)
-        
+
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
 }
