@@ -11,8 +11,8 @@ import UIKit
 
 class FlightSearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
-    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var flightResultsTable: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var flightResults: [Flight] = []
     var itineraries: [Itinerary]?
