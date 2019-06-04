@@ -20,8 +20,8 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     
     var flight: Flight?
     var itinerary: Itinerary?
-    var itineraries: [Itinerary]?
-    var checklists: [Checklist] = [Checklist(name: "Apple", done: false)]
+    var itineraries: [Itinerary] = []
+    var checklists: [Checklist] = []
     var dataManager = DataManager()
     var index: Int?
     
@@ -43,6 +43,19 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        do {
+            itineraries = try dataManager.loadItinerary()
+        }
+        catch {
+            print("Cannot load itineraries")
+        }
+        
+        if let itineraryIndex = index {
+            checklists = itineraries[itineraryIndex].checklists
+        } else {
+            checklists = [Checklist(name: "", done: false)]
+        }
+        
         tableView.reloadData()
     }
     
@@ -67,26 +80,17 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     @IBAction func editBtnTapped(_ sender: Any) {
-        checklists.append(Checklist(name: "banana", done: true))
+        checklists.append(Checklist(name: "", done: false))
         tableView.reloadData()
     }
 
     @IBAction func saveItinerary(_ sender: Any) {
-        var itineraries: [Itinerary] = []
-        do {
-            itineraries = try dataManager.loadItinerary()
-        }
-        catch {
-            print("Cannot load itineraries")
-        }
-
         if let itineraryIndex = index {
             itineraries[itineraryIndex] = Itinerary(checkList: checklists, flight: flight!, reminder: itineraries[itineraryIndex].reminder)
         } else {
             let itinerary = Itinerary(checkList: checklists, flight: flight!, reminder: 5)
             itineraries.append(itinerary)
         }
-        
         
         do {
             try dataManager.saveItinerary(itineraries)
@@ -116,6 +120,7 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         cell.checklistButtonDelegate = self
         cell.indexP = indexPath.row
         cell.checklists = checklists
+        
         
         return cell
     }
