@@ -14,8 +14,8 @@ class Flight: Codable {
     var origin : String
     var destination : String
     var flightNumber : String
-    var fromDate: Date
-    var toDate: Date
+    var fromDate: String
+    var toDate: String
     
     enum CodingKeys: String, CodingKey {
         case flightNumber = "flightNumber"
@@ -25,7 +25,7 @@ class Flight: Codable {
         case toDate = "toDate"
     }
     
-    init(origin : String, destination : String, flightNumber : String, fromDate : Date, toDate: Date) {
+    init(origin : String, destination : String, flightNumber : String, fromDate : String, toDate: String) {
         self.origin = origin
         self.destination = destination
         self.flightNumber = flightNumber
@@ -39,7 +39,7 @@ class Flight: Codable {
         flightNumber = try values.decodeIfPresent(String.self, forKey: .flightNumber)!
         origin = try values.decodeIfPresent(String.self, forKey: .origin)!
         destination = try values.decodeIfPresent(String.self, forKey: .destination)!
-        fromDate = DateUtils.toDate(try values.decodeIfPresent(String.self, forKey: .fromDate)!)!
-        toDate = DateUtils.toDate(try values.decodeIfPresent(String.self, forKey: .toDate)!)!
+        fromDate = try values.decodeIfPresent(String.self, forKey: .fromDate)!
+        toDate = try values.decodeIfPresent(String.self, forKey: .toDate)!
     }
 }

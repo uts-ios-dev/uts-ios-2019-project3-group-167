@@ -12,14 +12,26 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet weak var itinerariesTable: UITableView!
     
-    var itineraries: [Itinerary] = [Itinerary(checkList: [], flight: Flight(origin: "Jakarta", destination: "Sydney", flightNumber: "AQ243", fromDate: DateUtils.toDate("2019-08-01T20:00:00")!, toDate: DateUtils.toDate("2019-08-02T07:30:00")!), reminder: 2)]
+    var itineraries: [Itinerary] = []
+    
+    var dataManager = DataManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         itinerariesTable.dataSource = self
         itinerariesTable.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // Do any additional setup after loading the view.
+
+        do {
+            itineraries = try dataManager.loadItinerary()
+        } catch {
+            print("error")
+        }
+        itinerariesTable.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -55,8 +67,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         destinationAndOriginLabel.text = "\(itinerary.flight.origin) to \(itinerary.flight.destination)"
         flightNumberLabel.text = itinerary.flight.flightNumber
-        fromDateLabel.text = DateUtils.toDateString(itinerary.flight.fromDate)
-        timeLabel.text = "\(DateUtils.toTimeString(itinerary.flight.fromDate)) - \(DateUtils.toTimeString(itinerary.flight.toDate))"
+        
+        let fromDate = DateUtils.toDate(itinerary.flight.fromDate)
+        let toDate = DateUtils.toDate(itinerary.flight.toDate)
+        fromDateLabel.text = DateUtils.toDateString(fromDate!)
+        timeLabel.text = "\(DateUtils.toTimeString(fromDate!)) - \(DateUtils.toTimeString(toDate!))"
         reminderLabel.text = "Reminder \(itinerary.reminder) hour(s) prior"
         
         return cell

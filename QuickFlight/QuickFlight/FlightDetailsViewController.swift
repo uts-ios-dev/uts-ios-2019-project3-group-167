@@ -22,6 +22,7 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     var itinerary: Itinerary?
     var itineraries: [Itinerary]?
     var checklists: [Checklist] = [Checklist(name: "Apple", done: false)]
+    var dataManager = DataManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +31,13 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         reminderBtn.imageEdgeInsets = UIEdgeInsets(top: 32, left: 32, bottom: 32, right: 32)
 
         if let flightDetails = flight {
-            dateLabel.text = DateUtils.toDateString(flightDetails.fromDate)
+            let fromDate = DateUtils.toDate(flightDetails.fromDate)
+            let toDate = DateUtils.toDate(flightDetails.toDate)
+            
+            dateLabel.text = "\(DateUtils.toDateString(fromDate!))"
             flightNumberLabel.text = flightDetails.flightNumber
             originToDestinationLabel.text = "\(flightDetails.origin) to \(flightDetails.destination)"
-            timeLabel.text = "\(DateUtils.toTimeString(flightDetails.fromDate)) - \(DateUtils.toTimeString(flightDetails.toDate))"
+            timeLabel.text = "\(DateUtils.toTimeString(fromDate!)) - \(DateUtils.toTimeString(toDate!))"
         }
     }
     
@@ -51,6 +55,22 @@ class FlightDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     }
 
     @IBAction func saveItinerary(_ sender: Any) {
+        var itineraries: [Itinerary] = []
+        do {
+            itineraries = try dataManager.loadItinerary()
+        }
+        catch {
+            print("Cannot load itineraries")
+        }
+        
+        let itinerary = Itinerary(checkList: checklists, flight: flight!, reminder: 5)
+        itineraries.append(itinerary)
+        do {
+            try dataManager.saveItinerary(itineraries)
+        } catch {
+            print("Data not saved")
+        }
+        
         self.navigationController?.popViewController(animated: true)
     }
     

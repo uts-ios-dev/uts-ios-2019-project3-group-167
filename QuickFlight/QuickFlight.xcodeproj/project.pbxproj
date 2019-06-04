@@ -12,6 +12,7 @@
 		449F77C3229258F7009DE33E /* checkboxOutline.png in Resources */ = {isa = PBXBuildFile; fileRef = 449F77C1229258F7009DE33E /* checkboxOutline.png */; };
 		449F77C4229258F7009DE33E /* checkboxFilled.png in Resources */ = {isa = PBXBuildFile; fileRef = 449F77C2229258F7009DE33E /* checkboxFilled.png */; };
 		449F77C622925DA6009DE33E /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449F77C522925DA6009DE33E /* ItemCell.swift */; };
+		44B21C7022A3A735000F75AC /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B21C6F22A3A735000F75AC /* DataManager.swift */; };
 		552E52A1229234F700CB0658 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552E52A0229234F700CB0658 /* AppDelegate.swift */; };
 		552E52A3229234F700CB0658 /* FlightDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552E52A2229234F700CB0658 /* FlightDetailsViewController.swift */; };
 		552E52A6229234F700CB0658 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 552E52A4229234F700CB0658 /* Main.storyboard */; };
@@ -53,6 +54,7 @@
 		449F77C1229258F7009DE33E /* checkboxOutline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkboxOutline.png; sourceTree = "<group>"; };
 		449F77C2229258F7009DE33E /* checkboxFilled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkboxFilled.png; sourceTree = "<group>"; };
 		449F77C522925DA6009DE33E /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		44B21C6F22A3A735000F75AC /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		552E529D229234F700CB0658 /* QuickFlight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickFlight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		552E52A0229234F700CB0658 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		552E52A2229234F700CB0658 /* FlightDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightDetailsViewController.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				CFF8265F229798F6005EBA63 /* Flight.swift */,
 				CFF826612297993D005EBA63 /* Itinerary.swift */,
 				CFF8266322979979005EBA63 /* Checklist.swift */,
+				44B21C6F22A3A735000F75AC /* DataManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5548B40B229818A60033558F /* DateUtils.swift in Sources */,
+				44B21C7022A3A735000F75AC /* DataManager.swift in Sources */,
 				CFF8266422979979005EBA63 /* Checklist.swift in Sources */,
 				552E52A3229234F700CB0658 /* FlightDetailsViewController.swift in Sources */,
 				552E52A1229234F700CB0658 /* AppDelegate.swift in Sources */,

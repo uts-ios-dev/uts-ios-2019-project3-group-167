@@ -21,11 +21,4 @@ class Checklist: Codable {
         self.name = name
         self.done = done
     }
-    
-    required init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        
-        name = try values.decodeIfPresent(String.self, forKey: .name)!
-        done = try values.decodeIfPresent(Bool.self, forKey: .done)!
-    }
 }
