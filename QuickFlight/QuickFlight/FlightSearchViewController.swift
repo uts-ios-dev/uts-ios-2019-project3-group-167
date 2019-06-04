@@ -91,7 +91,9 @@ class FlightSearchViewController: UIViewController, UITableViewDataSource, UITab
         }
 
         isFlightSearching = true
-        searchFlightResults = flightResults.filter({$0.flightNumber.contains(textToSearch)})
+        searchFlightResults = flightResults.filter({
+            $0.flightNumber.lowercased().contains(textToSearch.lowercased())
+        })
         flightResultsTable.reloadData()
     }
 
